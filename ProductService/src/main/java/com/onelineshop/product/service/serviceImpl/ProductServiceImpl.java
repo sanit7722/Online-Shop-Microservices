@@ -1,6 +1,7 @@
 package com.onelineshop.product.service.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,19 @@ public class ProductServiceImpl implements ProductService{
 		}).toList();
 		return list;
 	}
+
+	@Override
+	public ProductResponse getProductById(String id) {
+		Product product = productRepo.findById(id).orElseThrow();
+		
+		return ProductResponse.builder()
+				.id(product.getId())
+				.name(product.getName())
+				.description(product.getDescription())
+				.price(product.getPrice())
+				.build();
+	}
+	
+	
 
 }
