@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.onelineshop.order.dto.OrderLineItemsDto;
 import com.onelineshop.order.dto.OrderRequest;
@@ -12,6 +13,7 @@ import com.onelineshop.order.entity.OrderLineItem;
 import com.onelineshop.order.repo.OrderRepo;
 import com.onelineshop.order.service.OrderService;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
