@@ -1,6 +1,10 @@
 package com.onelineshop.inventory.service;
 
+import java.util.List;
+
+import com.onelineshop.inventory.dto.InventoryResponse;
+
 public interface InventoryService {
-	boolean isInStock(String skuCode);
+	List<InventoryResponse> isInStock(List<String> skuCode);
 
 }
