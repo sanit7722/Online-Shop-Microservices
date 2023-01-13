@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
 		if (allProductsIsInStock)
 			orderRepo.save(order);
 		else
-			throw new IllegalArgumentException("Product is ot in stock, try again later");
+			throw new IllegalArgumentException("Product is not in stock, try again later");
 
 	}
 
