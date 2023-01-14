@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRepo orderRepo;
 
 	@Autowired
-	private WebClient webClient;
+	private WebClient.Builder webClientBuilder;
 
 	@Override
 	public void placeOrder(OrderRequest orderRequest) {
@@ -36,8 +36,8 @@ public class OrderServiceImpl implements OrderService {
 		
 		List<String> skuCodes = order.getOrderLineItems().stream().map(orderLineItem->orderLineItem.getSkuCode()).toList();
 
-		 InventoryResponse[] inventoryResponseArray = webClient.get()
-				.uri("http://localhost:8083/api/inventory",ueiBuilder-> ueiBuilder.queryParam("skuCode", skuCodes).build())
+		 InventoryResponse[] inventoryResponseArray = webClientBuilder.build().get()
+				.uri("http://INVENTORY-SERVICE/api/inventory",ueiBuilder-> ueiBuilder.queryParam("skuCode", skuCodes).build())
 				.retrieve()
 				.bodyToMono(InventoryResponse[].class)
 				.block();
